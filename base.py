@@ -227,9 +227,9 @@ def Amfcc(feat,winsize=50):
         print('The sentence is too short to be detected')
         return feat
         
-    numpy.random.shuffle(X)
+    numpy.random.shuffle(feat)
     newfeat=[]
     for id in range(len(feat))[:-winsize]:
-        newfeat.append(np.average(feat[id:id+winsize],axis=0))
-    newfeat=np.array(newfeat)
+        newfeat.append(numpy.average(feat[id:id+winsize],axis=0))
+    newfeat=numpy.array(newfeat)
     return newfeat
