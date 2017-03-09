@@ -188,3 +188,31 @@ def delta(feat, N=1):
     for t in range(NUMFRAMES):
         delta_feat[t] = numpy.dot(numpy.arange(-N, N+1), padded[t : t+2*N+1]) / denominator   # [t : t+2*N+1] == [(N+t)-N : (N+t)+N+1]
     return delta_feat
+
+def mfcc_d_dd(signal,samplerate=16000,winlen=0.025,winstep=0.01,numcep=13,
+         nfilt=26,nfft=512,lowfreq=0,highfreq=None,preemph=0.97,ceplifter=22,appendEnergy=True,
+         winfunc=lambda x:numpy.ones((x,))):
+    """Compute MFCC features with its delta and delta delta from an audio signal.
+
+    :param signal: the audio signal from which to compute features. Should be an N*1 array
+    :param samplerate: the samplerate of the signal we are working with.
+    :param winlen: the length of the analysis window in seconds. Default is 0.025s (25 milliseconds)
+    :param winstep: the step between successive windows in seconds. Default is 0.01s (10 milliseconds)
+    :param numcep: the number of cepstrum to return, default 13
+    :param nfilt: the number of filters in the filterbank, default 26.
+    :param nfft: the FFT size. Default is 512.
+    :param lowfreq: lowest band edge of mel filters. In Hz, default is 0.
+    :param highfreq: highest band edge of mel filters. In Hz, default is samplerate/2
+    :param preemph: apply preemphasis filter with preemph as coefficient. 0 is no filter. Default is 0.97. 
+    :param ceplifter: apply a lifter to final cepstral coefficients. 0 is no lifter. Default is 22. 
+    :param appendEnergy: if this is true, the zeroth cepstral coefficient is replaced with the log of the total frame energy.
+    :param winfunc: the analysis window to apply to each frame. By default no window is applied.
+    :returns: A numpy array of size (NUMFRAMES by numcep) containing features. Each row holds 1 feature vector.
+    """            
+    mfcc_feat = mfcc(signal,samplerate,winlen,winstep,numcep,
+         nfilt,nfft,lowfreq,highfreq,preemph,ceplifter,appendEnergy,
+         )
+    d_mfcc_feat = delta(mfcc_feat)
+    dd_mfcc_feat=delta(d_mfcc_feat)
+    mfcc_d_dd_feat=numpy.concatenate((mfcc_feat,d_mfcc_feat,dd_mfcc_feat), axis=1)
+    return mfcc_d_dd_feat
