@@ -216,3 +216,20 @@ def mfcc_d_dd(signal,samplerate=16000,winlen=0.025,winstep=0.01,numcep=13,
     dd_mfcc_feat=delta(d_mfcc_feat)
     mfcc_d_dd_feat=numpy.concatenate((mfcc_feat,d_mfcc_feat,dd_mfcc_feat), axis=1)
     return mfcc_d_dd_feat
+
+def Amfcc(feat,winsize=50):
+    """Compute AMFCC from a feature vector sequence.
+
+    :param feat: A numpy array of size (NUMFRAMES by number of features) containing features. Each row holds 1 feature vector.
+    :param winsize: the length of the sliding average window. Default is 50
+    """ 
+    if len(feat)<winsize:
+        print('The sentence is too short to be detected')
+        return feat
+        
+    numpy.random.shuffle(X)
+    newfeat=[]
+    for id in range(len(feat))[:-winsize]:
+        newfeat.append(np.average(feat[id:id+winsize],axis=0))
+    newfeat=np.array(newfeat)
+    return newfeat
