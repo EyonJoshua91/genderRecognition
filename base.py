@@ -1,5 +1,6 @@
 # calculate filterbank features. Provides e.g. fbank and mfcc features for use in ASR applications
 # Author: James Lyons 2012
+# Edited: Yang Yu 2017
 from __future__ import division
 import numpy
 from sigproc import *
@@ -248,7 +249,7 @@ def GenderPredict(feats,male_model,female_model,mode='score'):
     male_score_total=0
     female=0
     female_score_total=0
-    feats=(feats-np.mean(feats,axis=0))/np.linalg.norm(feats,axis=0)
+    feats=(feats-numpy.mean(feats,axis=0))/numpy.linalg.norm(feats,axis=0)
     for i in range(len(feats)):
         male_score=male_model.score(feats[i].reshape(1,-1))
         female_score=female_model.score(feats[i].reshape(1,-1))
@@ -259,6 +260,10 @@ def GenderPredict(feats,male_model,female_model,mode='score'):
             female_score_total+=female_score
             female+=1
     if mode=='score':
+        print(male_score_total)
+        print(female_score_total)
+        print(male)
+        print(female)
         if male_score_total>female_score_total:
             return 1
         else:

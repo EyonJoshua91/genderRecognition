@@ -8,12 +8,19 @@
 """
 
 import pickle
+import sys
 import sklearn.mixture
 import getopt
 import os 
 import scipy.io.wavfile as  wav
 import numpy as np
-from base import GenderPredict
+from base import GenderPredict,mfcc_d_dd
+
+def getopt2(name, opts, default = None) :
+    value = [v for n,v in opts if n==name]
+    if len(value) == 0 :
+        return default
+    return value[0]
 
 if __name__ == '__main__':
     try:
@@ -22,14 +29,19 @@ if __name__ == '__main__':
         if len(args) != 2 :
             raise ValueError("Specify wavefile modelfile!")
         wavfile,modelfile= args
-        if os.path.exists(wavfile):
+        if not os.path.exists(wavfile):
             raise ValueError("wavefile doesn't exist!")
-        if os.path.exists(modelfile):
+        if not os.path.exists(modelfile):
             raise ValueError("modelfile doesn't exist!")        
         mode = getopt2("-m", opts, 'GMM')
         winlen=getopt2("-l", opts, 0.025)
         winstep=getopt2("-s", opts, 0.01)
-    if mode==GMM:
+    except :
+        print __doc__
+        (type, value, traceback) = sys.exc_info()
+        print value
+        sys.exit(0)
+    if mode=='GMM':
         (rate,sig) = wav.read(wavfile)
         feats=mfcc_d_dd(sig,rate,winlen=winlen,winstep=winstep,numcep=13)
         f=open(modelfile,'rb')
@@ -37,6 +49,9 @@ if __name__ == '__main__':
         f.close()
         print('Done')
         gender=GenderPredict(feats,male_model,female_model,mode='score')
-        
+        if gender==1:
+            print('Gender is Male')
+        else:
+            print('Gender is Female')
     else:
         print('Other models are not available now')
