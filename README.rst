@@ -33,3 +33,7 @@ Explanation for the process of training.
 +-------------------------+----------------------------------------------------+
 | GMM_classify.ipynb      |   Train GMM models for gender detection            |
 +-------------------------+----------------------------------------------------+
+| base.py                 | Provides mfcc features for use in ASR applications |
++-------------------------+----------------------------------------------------+
+| sigproc.py              |   routines for basic signal processing             |
++-------------------------+----------------------------------------------------+
