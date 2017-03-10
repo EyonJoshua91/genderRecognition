@@ -234,7 +234,7 @@ def Amfcc(feat,winsize=50):
     newfeat=numpy.array(newfeat)
     return newfeat
 
-def GenderPredict(feats,male_model,female_modelmode='score'):
+def GenderPredict(feats,male_model,female_model,mode='score'):
     """Return Gender detection sentence level result based on frames level result
 
     :param feats: A numpy array of size (NUMFRAMES by number of features) containing features. Each row holds 1 feature vector.
