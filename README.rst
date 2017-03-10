@@ -33,7 +33,7 @@ GMM_classify.ipynb  Train GMM models for gender detection
 
 =============	===========
 Document 		Description
-=============	===========
+====================	===========
 voxforgeDownload.sh			the audio signal from which to compute features. Should be an N*1 array
 samplerate 		the samplerate of the signal we are working with.
 winlen 			the length of the analysis window in seconds. Default is 0.025s (25 milliseconds)
