@@ -19,18 +19,6 @@ Training document
 
 Explanation for the process of training.
 
-====================  =============================================
-Document.             Description  
-====================  ==============================================
-voxforgeDownload.sh   Download voxforge corpus from website
---------------------  ---------------------------------------------
-Corpus_prep.ipynb     Pick and formalize the audios for further training
---------------------  ---------------------------------------------
-MFCC_extract.ipynb    Extract AMFCC features from prepared corpus
---------------------  ---------------------------------------------
-GMM_classify.ipynb    Train GMM models for gender detection
-===================== =============================================
-
 
 +-------------------------+----------------------------------------------------+
 | Document                | Description                                        |
