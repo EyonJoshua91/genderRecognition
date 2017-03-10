@@ -233,3 +233,38 @@ def Amfcc(feat,winsize=50):
         newfeat.append(numpy.average(feat[id:id+winsize],axis=0))
     newfeat=numpy.array(newfeat)
     return newfeat
+
+def GenderPredict(feats,male_model,female_modelmode='score'):
+    """Return Gender detection sentence level result based on frames level result
+
+    :param feats: A numpy array of size (NUMFRAMES by number of features) containing features. Each row holds 1 feature vector.
+    :param male_model: Trained GMM model for male
+    :param female_modelmode: Trianed GMM model for female
+    :param mode: determine the ways to output label for sentence level. 'score' means to accumulate the probabilities, 'most' means
+             to choose the label with most appearance.
+    :returns: 1 means male, 0 means female
+    """ 
+    male=0
+    male_score_total=0
+    female=0
+    female_score_total=0
+    feats=(feats-np.mean(feats,axis=0))/np.linalg.norm(feats,axis=0)
+    for i in range(len(feats)):
+        male_score=male_model.score(feats[i])
+        female_score=female_model.score(feats[i])
+        if male_score>female_score:
+            male_score_total+=male_score
+            male+=1
+        elif male_score<female_score:
+            female_score_total+=female_score
+            female+=1
+    if mode=='score':
+        if male_score_total>female_score_total:
+            return 1
+        else:
+            return 0     
+    if mode=='most':
+        if male>female:
+            return 1
+        else:
+            return 0  
