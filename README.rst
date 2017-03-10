@@ -20,9 +20,9 @@ Training document
 Explanation for the process of training.
 
 ======== ===========
-Documen  Description  
+Document  Description  
 ======== ===========
-voxforgeDownload.sh   Download voxforge corpus
+voxforgeDownload.sh   Download voxforge corpus from website
 --------------- -----
 Corpus_prep.ipynb  Pick and formalize the audios for further training
 --------------- -----
@@ -32,9 +32,9 @@ GMM_classify.ipynb  Train GMM models for gender detection
 =============== =====
 
 =============	===========
-Parameter 		Description
+Document 		Description
 =============	===========
-signal			the audio signal from which to compute features. Should be an N*1 array
+voxforgeDownload.sh			the audio signal from which to compute features. Should be an N*1 array
 samplerate 		the samplerate of the signal we are working with.
 winlen 			the length of the analysis window in seconds. Default is 0.025s (25 milliseconds)
 winstep 		the step between successive windows in seconds. Default is 0.01s (10 milliseconds)
