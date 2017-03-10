@@ -8,10 +8,10 @@ This project is to test performance of different classification method on Gender
 Test tool usage
 ============
 python GenderDetect.py [options] wave_file model_file
-where options may include:
--m Model --determine which model you want to use, including GMM,MLP,KNN,DBN(currently, only GMM is available)
--l window length --the length of the analysis window in seconds. Default is 0.025s (25 milliseconds)
--s window step  -- the step between successive windows in seconds. Default is 0.01s (10 milliseconds)
+\where options may include:
+\-m Model --determine which model you want to use, including GMM,MLP,KNN,DBN(currently, only GMM is available)
+\-l window length --the length of the analysis window in seconds. Default is 0.025s (25 milliseconds)
+\-s window step  -- the step between successive windows in seconds. Default is 0.01s (10 milliseconds)
 
 
 Training document
