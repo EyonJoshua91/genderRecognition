@@ -17,11 +17,16 @@ python GenderDetect.py [options] wave_file model_file
 Training document
 ============
 
-=============	===========
-Document 		Description
-=============	===========
-voxforgeDownload.sh			Download voxforge corpus
-Corpus_prep.ipynb 		Pick and formalize the audios for further training
-MFCC_extract.ipynb 			Extract AMFCC features from prepared corpus
-GMM_classify.ipynb 		Train GMM models for gender detection
-=============	===========
+
+
+======== ===========
+Documen  Description  
+======== ===========
+voxforgeDownload.sh   Download voxforge corpus
+--------------- -----
+Corpus_prep.ipynb  Pick and formalize the audios for further training
+--------------- -----
+MFCC_extract.ipynb  Extract AMFCC features from prepared corpus
+--------------- -----
+GMM_classify.ipynb  Train GMM models for gender detection
+=============== =====
