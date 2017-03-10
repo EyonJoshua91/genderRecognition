@@ -260,10 +260,6 @@ def GenderPredict(feats,male_model,female_model,mode='score'):
             female_score_total+=female_score
             female+=1
     if mode=='score':
-        print(male_score_total)
-        print(female_score_total)
-        print(male)
-        print(female)
         if male_score_total>female_score_total:
             return 1
         else:

@@ -47,7 +47,6 @@ if __name__ == '__main__':
         f=open(modelfile,'rb')
         male_model,female_model=pickle.load(f)
         f.close()
-        print('Done')
         gender=GenderPredict(feats,male_model,female_model,mode='score')
         if gender==1:
             print('Gender is Male')
