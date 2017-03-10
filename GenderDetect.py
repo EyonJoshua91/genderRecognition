@@ -36,7 +36,7 @@ if __name__ == '__main__':
         male_model,female_model=pickle.load(f)
         f.close()
         print('Done')
-        #gender=GenderPredict(feats,male_model,female_model,mode='score')
+        gender=GenderPredict(feats,male_model,female_model,mode='score')
         
     else:
         print('Other models are not available now')
